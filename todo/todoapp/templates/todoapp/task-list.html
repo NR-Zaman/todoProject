@@ -1,0 +1,59 @@
+{% extends "todoapp/index.html" %}
+{% block title %}Create Task{% endblock title %}
+
+{% block content %}
+    <!--===========  start of form header  ==========-->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>My Tasks</h2>
+    </div>
+    <!--===========  End of form header  ==========-->
+    <!--===========  start of dashboard-table  ==========-->
+            <div class="admin-table">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>
+                            <a href="#" class="text-white text-decoration-none">
+                                Task Name
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" class="text-white text-decoration-none">
+                                Dateline
+                            </a>
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                   {% for task in task %}
+
+                    <tr>
+                        <td> {{ task.taskname }}</td>
+                        <td> {{ task.dadeline }}</td>
+                        <td> {{ task.status }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'delete' task.taskname %}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </a>
+
+                            <a href="{% url 'view' task.id %}">
+                                <button type="submit" class="btn btn-danger">View</button>
+                            </a>
+                            <a href="/edit/{{ task.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!--===========  End of dashboard-table  ==========-->
+
+{%  endblock content  %}
